@@ -1,0 +1,93 @@
+:root {
+  --bg-color: #1b4d3e;
+  --text-color: #f8f3d9;
+}
+
+@media only screen and (max-width: 768px) {
+  .firstList {
+    display: none !important;
+  }
+
+  .fluid nav {
+    padding: 8px 48px;
+  }
+
+  .openSlide {
+    display: block !important;
+    position: fixed;
+    top: 60px;
+    font-weight: 700;
+    left: 50%;
+    z-index: 10;
+    transform: translate(-50%);
+    display: flex !important;
+    flex-direction: column;
+    justify-content: flex-end;
+    border-radius: 10px;
+    width: 50%;
+    background-color: var(--bg-color);
+    align-items: center;
+    gap: 8px !important;
+    list-style: none;
+  }
+
+  .firstList {
+    padding: 12px 0px;
+  }
+
+  .firstList a {
+    color: var(--text-color);
+  }
+
+  .sideIcon {
+    display: block !important;
+    position: fixed;
+    top: 0px;
+  }
+}
+
+.fluid {
+  position: sticky;
+  top: 0px;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+}
+
+.firstList {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 24px;
+  font-size: 16px;
+  font-weight: 700;
+  list-style: none;
+}
+
+.firstList li {
+  margin-top: 8px;
+}
+
+.firstList li a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.profileIcon {
+  font-size: 1.5rem;
+}
+
+.sideIcon {
+  font-size: 2.5rem;
+}
+
+.firstList {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 24px;
+}
+
+.sideIcon {
+  display: none;
+}
