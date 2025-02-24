@@ -29,6 +29,18 @@
     align-items: center;
     gap: 8px !important;
     list-style: none;
+    animation: slideAnimation 1s ease-in-out  1;
+  }
+
+  @keyframes slideAnimation {
+    from{
+      opacity: 0%;
+      top: 0px;
+    }
+    to{
+      opacity: 100%;
+      top: 60px;
+    }
   }
 
   .firstList {
