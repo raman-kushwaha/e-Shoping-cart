@@ -10,6 +10,8 @@ import Logout from "../Components/Logout";
 import Profile from "../Components/Profile";
 import { useDispatch } from "react-redux";
 import { products } from "../store/features/e-ShopingCartSlice";
+import Signup from "../Components/Signup";
+import Login from "../Components/Login";
 
 const App = () => {
   const [selectedTab, setSelectedTab] = useState("Products");
@@ -36,6 +38,8 @@ const App = () => {
   return (
     <>
       <Header setSelectedTab={setSelectedTab} />
+      {selectedTab === "Signup" && <Signup />}
+      {selectedTab === "Login" && <Login />}
       {selectedTab === "Products" && <Products isFetch={isFetch} />}
       {selectedTab === "AddProduct" && <AddProduct />}
       {selectedTab === "UpdateProduct" && <UpdateProduct />}

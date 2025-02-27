@@ -19,6 +19,12 @@ const Header = ({ setSelectedTab }) => {
 
           <div className="col-md-8 d-flex justify-content-end">
             <ul className={`${styles.firstList} list`}>
+              <li onClick={() => setSelectedTab("Login")}>
+                <a href="#">Login</a>
+              </li>
+              <li onClick={() => setSelectedTab("Signup")}>
+                <a href="#">Signup</a>
+              </li>
               <li onClick={() => setSelectedTab("Products")}>
                 <a href="#">Products</a>
               </li>

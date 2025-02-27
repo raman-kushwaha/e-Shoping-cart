@@ -1,0 +1,40 @@
+@media only screen and (max-width: 767px) {
+  .form {
+    width: 100vw;
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%);
+    top: 20px;
+    margin-top: 3rem;
+  }
+
+  .form label {
+    font-size: 14px !important;
+    text-transform: capitalize;
+  }
+}
+
+.form {
+  min-width: 240px;
+  max-width: 380px;
+  min-height: 50vh;
+  border-radius: 24px;
+}
+
+.form label {
+  font-size: 18px;
+  font-weight: 600;
+  border: none;
+}
+
+.formBtn {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.formBtn button {
+  width: 50%;
+  border: 1px solid #198754;
+}
