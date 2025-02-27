@@ -29,17 +29,18 @@
     align-items: center;
     gap: 8px !important;
     list-style: none;
-    animation: slideAnimation 1s ease-in-out  1;
+
+    animation: slideAnimationIn 1s ease-in 1;
   }
 
-  @keyframes slideAnimation {
-    from{
-      opacity: 0%;
-      top: 0px;
-    }
-    to{
+  @keyframes slideAnimationIn {
+    to {
       opacity: 100%;
       top: 60px;
+    }
+    from {
+      opacity: 0%;
+      top: 0px;
     }
   }
 
@@ -63,6 +64,7 @@
   top: 0px;
   color: var(--text-color);
   background-color: var(--bg-color);
+  z-index: 10;
 }
 
 .firstList {

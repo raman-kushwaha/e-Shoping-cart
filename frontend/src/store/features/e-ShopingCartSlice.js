@@ -1,22 +1,21 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  counter: 0,
+  productList: [],
 };
 
 const cartSlice = createSlice({
   name: "e-ShopingCart",
   initialState,
   reducers: {
-    increment: (state) => {
-      state.counter += 1;
+    products: (state, action) => {
+      state.productList = [...action.payload];
     },
-    decrement: (state) => {
-      state.counter -= 1;
+    addProducts: (state, action) => {
+      console.log("Add Product");
     },
   },
 });
 
-const cartReducer = cartSlice.reducer;
-export const cartActions = cartSlice.actions;
-export default cartReducer;
+export const { products } = cartSlice.actions;
+export default cartSlice.reducer;

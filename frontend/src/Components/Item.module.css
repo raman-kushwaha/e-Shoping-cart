@@ -1,0 +1,91 @@
+@media only screen and (max-width: 767px) {
+  .card_body {
+    gap: 0px !important;
+  }
+
+  .card_title {
+    font-size: 16px !important;
+  }
+
+  .card_text {
+    font-size: 12px !important;
+  }
+
+  .category {
+    font-size: 16px !important;
+    font-weight: 600 !important;
+  }
+
+  .pricing {
+    font-size: 23px !important;
+    font-weight: 600 !important;
+  }
+
+  .rating {
+    font-size: 16px !important;
+    font-weight: 500 !important;
+  }
+}
+
+.imgSection {
+  width: 95%;
+  height: 18rem;
+  background-image: url("https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg");
+  background-size: contain;
+  margin: 12px 0px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.card_body {
+  padding: 10px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.card_title {
+  font-size: 18px;
+}
+
+.card_text {
+  font-size: 12px;
+  text-transform: capitalize;
+  line-height: 15px;
+}
+
+.category {
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.pricing span {
+  font-weight: 400;
+}
+
+.pricing {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.rating {
+  text-transform: capitalize;
+  font-weight: 600;
+  font-size: 18px;
+  display: flex !important;
+}
+
+.cont {
+  display: flex;
+  flex-direction: column;
+}
+
+.btnClass {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card {
+  min-height: 300px;
+}
