@@ -3,7 +3,7 @@
   --text-color: #f8f3d9;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 767px) {
   .firstList {
     display: none !important;
   }
@@ -15,7 +15,7 @@
   .openSlide {
     display: block !important;
     position: fixed;
-    top: 60px;
+    top: 68px;
     font-weight: 700;
     left: 50%;
     z-index: 10;
@@ -24,13 +24,14 @@
     flex-direction: column;
     justify-content: flex-end;
     border-radius: 10px;
-    width: 50%;
-    background-color: var(--bg-color);
+    width: 70%;
+    background-color: white;
     align-items: center;
     gap: 8px !important;
     list-style: none;
+    box-shadow: 8px 25px 50px 3px rgba(0,0,0,0.6);
 
-    animation: slideAnimationIn 1s ease-in 1;
+    animation: slideAnimationIn 300ms ease-in-out 1;
   }
 
   @keyframes slideAnimationIn {
@@ -62,8 +63,8 @@
 .fluid {
   position: sticky;
   top: 0px;
-  color: var(--text-color);
-  background-color: var(--bg-color);
+  color: black;
+  background-color: white;
   z-index: 10;
 }
 
@@ -73,8 +74,9 @@
   align-items: center;
   gap: 24px;
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 600;
   list-style: none;
+  
 }
 
 .firstList li {
@@ -82,7 +84,8 @@
 }
 
 .firstList li a {
-  color: var(--text-color);
+  
+  color: black;
   text-decoration: none;
   font-size: 14px;
 }

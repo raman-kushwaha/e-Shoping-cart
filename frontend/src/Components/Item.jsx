@@ -11,7 +11,7 @@ const Item = ({ item }) => {
       />
       <div class={`${styles.card_body}`}>
         <h5 class={`${styles.card_title}`}>{item.title}</h5>
-        <p class={`${styles.card_text}`}>{item.description}</p>
+        <p class={`${styles.card_text}`}>{`${item.description}`.slice(0,100) + "..."}</p>
         <p className={`${styles.category}`}>Category : {item.category}</p>
         <div className={styles.cont}>
           <div className={`${styles.rating}`}>

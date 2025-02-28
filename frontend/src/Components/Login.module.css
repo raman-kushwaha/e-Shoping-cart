@@ -4,8 +4,9 @@
     position: fixed;
     left: 50%;
     transform: translate(-50%);
-    top: 20px;
+    top: 35px;
     margin-top: 3rem;
+    box-shadow: 18px 25px 50px 3px rgba(0, 0, 0, 0.6); 
   }
 
   .form label {

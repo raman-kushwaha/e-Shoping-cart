@@ -10,7 +10,7 @@ const Header = ({ setSelectedTab }) => {
     console.log(ul);
   };
   return (
-    <header className={`container-fluid ${styles.fluid}`}>
+    <header className={`container-fluid ${styles.fluid} shadow`}>
       <nav className="container">
         <div className="row align-items-center">
           <div className="col-md-4">
@@ -18,7 +18,7 @@ const Header = ({ setSelectedTab }) => {
           </div>
 
           <div className="col-md-8 d-flex justify-content-end">
-            <ul className={`${styles.firstList} list`}>
+            <ul className={`${styles.firstList} list `}>
               <li onClick={() => setSelectedTab("Login")}>
                 <a href="#">Login</a>
               </li>

@@ -1,11 +1,13 @@
 @media only screen and (max-width: 767px) {
   .form {
-    width: 100vw;
+    width: 95vw;
     position: fixed;
     left: 50%;
     transform: translate(-50%);
-    top: 20px;
+    top: 35px;
+    height: 63vh !important;
     margin-top: 3rem;
+    box-shadow: 18px 25px 50px 3px rgba(0,0,0,0.6);
   }
 
   .form label {
@@ -16,7 +18,7 @@
 
 .form {
   min-width: 240px;
-  max-width: 380px;
+  max-width: 330px;
   min-height: 50vh;
   border-radius: 24px;
 }
