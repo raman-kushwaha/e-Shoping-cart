@@ -1,8 +1,27 @@
 import styles from "./Signup.module.css";
+import { useRef } from "react";
+import { signup } from "../store/features/e-ShopingCartSlice";
+import { useDispatch } from "react-redux";
 
 const Signup = () => {
+  const userName = useRef();
+  const Email = useRef();
+  const Password = useRef();
+  const confirmPassword = useRef();
+
+  const dispatch = useDispatch();
+
   const handleOnSubmitForm = (event) => {
     event.preventDefault();
+
+    dispatch(
+      signup({
+        username: userName.current.value,
+        email: Email.current.value,
+        password: Password.current.value,
+        confirmpassword: confirmPassword.current.value,
+      })
+    );
   };
   return (
     <div className="container fluid">
@@ -22,6 +41,7 @@ const Signup = () => {
                     username
                   </label>
                   <input
+                    ref={userName}
                     id="username"
                     type="text"
                     className="form-control rounded"
@@ -33,6 +53,7 @@ const Signup = () => {
                     email
                   </label>
                   <input
+                    ref={Email}
                     id="email"
                     type="email"
                     className="form-control rounded"
@@ -44,6 +65,7 @@ const Signup = () => {
                     Password
                   </label>
                   <input
+                    ref={Password}
                     id="password"
                     type="password"
                     className="form-control rounded"
@@ -55,6 +77,7 @@ const Signup = () => {
                     Confirm Password
                   </label>
                   <input
+                    ref={confirmPassword}
                     id="cp"
                     type="password"
                     className="form-control rounded"

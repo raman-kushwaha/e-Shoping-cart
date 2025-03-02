@@ -3,15 +3,17 @@ import { FaCartPlus } from "react-icons/fa6";
 
 const Item = ({ item }) => {
   return (
-    <div class={`${styles.card} px-2`} style={{ width: "20rem" }}>
+    <div className={`${styles.card} px-2`} style={{ width: "20rem" }}>
       <img
         src={item.image}
         className={`${styles.imgSection} img-fluid`}
         alt=""
       />
-      <div class={`${styles.card_body}`}>
-        <h5 class={`${styles.card_title}`}>{item.title}</h5>
-        <p class={`${styles.card_text}`}>{`${item.description}`.slice(0,100) + "..."}</p>
+      <div className={`${styles.card_body}`}>
+        <h5 className={`${styles.card_title}`}>{item.title}</h5>
+        <p className={`${styles.card_text}`}>
+          {`${item.description}`.slice(0, 100) + "..."}
+        </p>
         <p className={`${styles.category}`}>Category : {item.category}</p>
         <div className={styles.cont}>
           <div className={`${styles.rating}`}>
