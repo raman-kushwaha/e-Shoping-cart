@@ -1,8 +1,23 @@
+import { useRef } from "react";
 import styles from "./Login.module.css";
+import { useDispatch } from "react-redux";
+import { login } from "../store/features/e-ShopingCartSlice";
 
 const Login = () => {
+  const Email = useRef();
+  const Password = useRef();
+
+  const dispatch = useDispatch();
+
   const handleOnSubmitForm = (event) => {
     event.preventDefault();
+
+    dispatch(
+      login({
+        email: Email.current.value,
+        password: Password.current.value,
+      })
+    );
   };
   return (
     <div className="container fluid">
@@ -22,6 +37,7 @@ const Login = () => {
                     email
                   </label>
                   <input
+                    ref={Email}
                     id="email"
                     type="email"
                     className="form-control rounded"
@@ -33,6 +49,7 @@ const Login = () => {
                     Password
                   </label>
                   <input
+                    ref={Password}
                     id="password"
                     type="password"
                     className="form-control rounded"

@@ -25,4 +25,25 @@ async function handleSignupForm(req, res) {
   return res.json(user);
 }
 
-module.exports = { handleSignupForm };
+async function handleLoginForm(req, res) {
+  let user;
+
+  const { email, password } = req.body;
+
+  try {
+    user = await userModal.findOne({
+      email: email,
+      password: password,
+    });
+
+    if (!user) {
+      throw new Error("User not Found");
+    }
+  } catch (err) {
+    return res.status(404).json({ err: "user not found" });
+  }
+
+  return res.json(user);
+}
+
+module.exports = { handleSignupForm, handleLoginForm };
