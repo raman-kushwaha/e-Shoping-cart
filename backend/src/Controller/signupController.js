@@ -1,4 +1,6 @@
 const userModal = require("../model/user Schame and  Model/userModel");
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
 
 async function handleSignupForm(req, res) {
   let user = {};
@@ -27,6 +29,7 @@ async function handleSignupForm(req, res) {
 
 async function handleLoginForm(req, res) {
   let user;
+  let token;
 
   const { email, password } = req.body;
 
@@ -39,11 +42,15 @@ async function handleLoginForm(req, res) {
     if (!user) {
       throw new Error("User not Found");
     }
+
+    if (user) token = jwt.sign({ ...user }, process.env.SECRET_KEY);
+
+    res.cookie("token", token);
   } catch (err) {
     return res.status(404).json({ err: "user not found" });
   }
 
-  return res.json(user);
+  return res.json({ token: token });
 }
 
 module.exports = { handleSignupForm, handleLoginForm };
