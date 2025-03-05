@@ -1,4 +1,5 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 
 const initialState = {
   productList: [],
@@ -15,37 +16,15 @@ const cartSlice = createSlice({
       console.log("Add Product");
     },
     signup: (state, action) => {
-      fetch("http://localhost:8080/signup", {
-        method: "post",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({ ...action.payload }),
-      })
-        .then((res) => res.json())
-        .then((data) => console.log(data));
+      axios.post("/form/signup", action.payload).then((res) => {
+        console.log(res);
+      });
     },
     login: (state, action) => {
-      // console.log(action.payload);
-
-      fetch("http://localhost:8080/login", {
-        method: "post",
-        headers: { "content-type": "application/json" },
-        // credentials: "include", //cors problem
-        body: JSON.stringify(action.payload),
-      })
-        .then((res) => {
-          return res.json();
-        })
-        .then((data) => {
-          try {
-            if (data.err) {
-              throw new Error("User not found");
-            } else if (data) {
-              console.log(data);
-            }
-          } catch (err) {
-            alert(err);
-          }
-        });
+      console.log(action.payload);
+      axios.post("/form/login", action.payload).then((res) => {
+        console.log(res);
+      });
     },
   },
 });
