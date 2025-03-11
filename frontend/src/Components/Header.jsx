@@ -3,6 +3,8 @@ import { CgProfile } from "react-icons/cg";
 import { IoReorderThreeOutline } from "react-icons/io5";
 import Cookies from "js-cookie";
 import { Link, useNavigate } from "react-router-dom";
+import PrivateComponent_1 from "./PrivateComponent_1";
+import PrivateComponent_2 from "./PrivateComponent_2";
 
 const Header = () => {
   let token = Cookies.get("token");
@@ -16,7 +18,7 @@ const Header = () => {
   const handleLogout = () => {
     Cookies.remove("token");
     window.location.reload();
-    navigation("/login");
+    navigation("/signup");
   };
 
   return (
@@ -34,46 +36,13 @@ const Header = () => {
           <div className="col-md-8 d-flex justify-content-end">
             <ul className={`${styles.firstList} list `}>
               {!token ? (
-                <>
-                  <li>
-                    <Link to="/signup">Signup</Link>
-                  </li>
-                  <li>
-                    <Link to="/">Products</Link>
-                  </li>
-                  <li>
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="search"
-                    />
-                  </li>
-                </>
+                <PrivateComponent_2 />
               ) : (
-                <>
-                  <li>
-                    <Link to="/">Products</Link>
-                  </li>
-                  <li>
-                    <Link to="/add-product">Add Product</Link>
-                  </li>
-                  <li>
-                    <Link to="/update-product">Update Product</Link>
-                  </li>
-                  <li onClick={handleLogout}>Logout</li>
-                  <li>
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="search"
-                    />
-                  </li>
-                  <li>
-                    <Link to="/">
-                      <CgProfile className={`${styles.profileIcon}`} />
-                    </Link>
-                  </li>
-                </>
+                <PrivateComponent_1
+                  handleLogout={handleLogout}
+                  CgProfile={CgProfile}
+                  styles={styles}
+                />
               )}
             </ul>
             <IoReorderThreeOutline
