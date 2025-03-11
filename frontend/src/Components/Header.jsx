@@ -2,9 +2,11 @@ import styles from "./Header.module.css";
 import { CgProfile } from "react-icons/cg";
 import { IoReorderThreeOutline } from "react-icons/io5";
 import Cookies from "js-cookie";
+import { Link, useNavigate } from "react-router-dom";
 
-const Header = ({ setSelectedTab }) => {
+const Header = () => {
   let token = Cookies.get("token");
+  const navigation = useNavigate();
 
   const handleSlideBar = () => {
     const ul = document.querySelector(".list");
@@ -13,7 +15,8 @@ const Header = ({ setSelectedTab }) => {
 
   const handleLogout = () => {
     Cookies.remove("token");
-    setSelectedTab("Login");
+    window.location.reload();
+    navigation("/login");
   };
 
   return (
@@ -21,21 +24,22 @@ const Header = ({ setSelectedTab }) => {
       <nav className="container">
         <div className="row align-items-center">
           <div className="col-md-4">
-            <h2>LOGO</h2>
+            <h2>
+              <Link to="/" className={styles.logo}>
+                LOGO
+              </Link>
+            </h2>
           </div>
 
           <div className="col-md-8 d-flex justify-content-end">
             <ul className={`${styles.firstList} list `}>
               {!token ? (
                 <>
-                  <li onClick={() => setSelectedTab("Login")}>
-                    <a href="#">Login</a>
+                  <li>
+                    <Link to="/signup">Signup</Link>
                   </li>
-                  <li onClick={() => setSelectedTab("Signup")}>
-                    <a href="#">Signup</a>
-                  </li>
-                  <li onClick={() => setSelectedTab("Products")}>
-                    <a href="#">Products</a>
+                  <li>
+                    <Link to="/">Products</Link>
                   </li>
                   <li>
                     <input
@@ -47,18 +51,16 @@ const Header = ({ setSelectedTab }) => {
                 </>
               ) : (
                 <>
-                  <li onClick={() => setSelectedTab("Products")}>
-                    <a href="#">Products</a>
+                  <li>
+                    <Link to="/">Products</Link>
                   </li>
-                  <li onClick={() => setSelectedTab("AddProduct")}>
-                    <a href="#">Add Product</a>
+                  <li>
+                    <Link to="/add-product">Add Product</Link>
                   </li>
-                  <li onClick={() => setSelectedTab("UpdateProduct")}>
-                    <a href="#">Update Product</a>
+                  <li>
+                    <Link to="/update-product">Update Product</Link>
                   </li>
-                  <li onClick={handleLogout}>
-                    <a href="#">Logout</a>
-                  </li>
+                  <li onClick={handleLogout}>Logout</li>
                   <li>
                     <input
                       type="text"
@@ -66,10 +68,10 @@ const Header = ({ setSelectedTab }) => {
                       placeholder="search"
                     />
                   </li>
-                  <li onClick={() => setSelectedTab("Profile")}>
-                    <a href="#">
+                  <li>
+                    <Link to="/">
                       <CgProfile className={`${styles.profileIcon}`} />
-                    </a>
+                    </Link>
                   </li>
                 </>
               )}

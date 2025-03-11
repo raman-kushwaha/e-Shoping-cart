@@ -1,5 +1,5 @@
 const Logout = () => {
-  return <h1>Logout</h1>;
+  return <Navigation></Navigation>;
 };
 
 export default Logout;

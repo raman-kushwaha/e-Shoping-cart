@@ -1,10 +1,24 @@
 import styles from "./Products.module.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Item from "./Item";
 import LoaderSpinner from "./LoaderSpinner";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { products } from "../store/features/e-ShopingCartSlice";
 
-const Products = ({ isFetch }) => {
+const Products = () => {
   const productList = useSelector((state) => state.cartReducer.productList);
+  const dispatch = useDispatch();
+
+  const [isFetch, setFetch] = useState(true);
+
+  useEffect(() => {
+    setFetch(true);
+    axios.get("https://fakestoreapi.com/products").then((res) => {
+      dispatch(products(res.data));
+      setFetch(false);
+    });
+  }, []);
 
   return (
     <div className={styles.productList}>

@@ -2,12 +2,14 @@ import styles from "./Signup.module.css";
 import { useRef } from "react";
 import { signup } from "../store/features/e-ShopingCartSlice";
 import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const userName = useRef();
   const Email = useRef();
   const Password = useRef();
   const confirmPassword = useRef();
+  const navigation = useNavigate();
 
   const dispatch = useDispatch();
 
@@ -22,6 +24,7 @@ const Signup = () => {
         confirmpassword: confirmPassword.current.value,
       })
     );
+    navigation("/login");
   };
   return (
     <div className="container fluid">
@@ -93,6 +96,14 @@ const Signup = () => {
                     </button>
                     <button className="btn btn-outline-success">Submit</button>
                   </div>
+                </div>
+                <div className={`container ${styles.accountPara}`}>
+                  <p>
+                    Already have an account?{" "}
+                    <Link to="/login" className={styles.link}>
+                      Sign in
+                    </Link>
+                  </p>
                 </div>
               </div>
             </form>

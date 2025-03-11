@@ -1,23 +1,30 @@
 import { useRef } from "react";
 import styles from "./Login.module.css";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "../store/features/e-ShopingCartSlice";
 
 const Login = () => {
   const Email = useRef();
   const Password = useRef();
-
   const dispatch = useDispatch();
+  const navi = useNavigate();
 
   const handleOnSubmitForm = (event) => {
     event.preventDefault();
 
+    const email = Email.current.value;
+    const password = Password.current.value;
+
     dispatch(
       login({
-        email: Email.current.value,
-        password: Password.current.value,
+        email,
+        password,
       })
     );
+
+    navi("/");
+    window.location.reload();
   };
   return (
     <div className="container fluid">
@@ -65,6 +72,14 @@ const Login = () => {
                     </button>
                     <button className="btn btn-outline-success">Submit</button>
                   </div>
+                </div>
+                <div className={`container ${styles.accountPara}`}>
+                  <p>
+                    Don't have an account?
+                    <Link to="/signup" className={styles.link}>
+                      Sign up
+                    </Link>
+                  </p>
                 </div>
               </div>
             </form>

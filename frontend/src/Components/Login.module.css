@@ -6,7 +6,7 @@
     transform: translate(-50%);
     top: 35px;
     margin-top: 3rem;
-    box-shadow: 18px 25px 50px 3px rgba(0, 0, 0, 0.6); 
+    box-shadow: 18px 25px 50px 3px rgba(0, 0, 0, 0.6);
   }
 
   .form label {
@@ -18,7 +18,7 @@
     font-size: 12px;
   }
 
-  .formBtn button{
+  .formBtn button {
     font-size: 12px !important;
     font-weight: 700;
   }
@@ -48,4 +48,15 @@
 .formBtn button {
   width: 50%;
   border: 1px solid #198754;
+}
+
+.accountPara p {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.link {
+  text-decoration: none;
+  font-size: 16px;
+  margin: 5px;
 }

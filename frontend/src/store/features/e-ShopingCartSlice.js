@@ -16,15 +16,10 @@ const cartSlice = createSlice({
       console.log("Add Product");
     },
     signup: (state, action) => {
-      axios.post("/form/signup", action.payload).then((res) => {
-        console.log(res);
-      });
+      axios.post("/form/signup", action.payload);
     },
     login: (state, action) => {
-      console.log(action.payload);
-      axios.post("/form/login", action.payload).then((res) => {
-        console.log(res);
-      });
+      axios.post("/form/login", action.payload);
     },
   },
 });

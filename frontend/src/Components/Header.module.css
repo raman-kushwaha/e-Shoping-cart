@@ -29,7 +29,7 @@
     align-items: center;
     gap: 8px !important;
     list-style: none;
-    box-shadow: 8px 25px 50px 3px rgba(0,0,0,0.6);
+    box-shadow: 8px 25px 50px 3px rgba(0, 0, 0, 0.6);
 
     animation: slideAnimationIn 300ms ease-in-out 1;
   }
@@ -76,15 +76,14 @@
   font-size: 16px;
   font-weight: 600;
   list-style: none;
-  
 }
 
 .firstList li {
   margin-top: 8px;
+  cursor: pointer;
 }
 
 .firstList li a {
-  
   color: black;
   text-decoration: none;
   font-size: 14px;
@@ -107,4 +106,10 @@
 
 .sideIcon {
   display: none;
+}
+
+.logo {
+  text-decoration: none;
+  color: #1b4d3e;
+  font-weight: 700;
 }

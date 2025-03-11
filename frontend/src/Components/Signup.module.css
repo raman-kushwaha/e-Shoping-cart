@@ -5,9 +5,9 @@
     left: 50%;
     transform: translate(-50%);
     top: 35px;
-    height: 63vh !important;
+    min-height: 63vh !important;
     margin-top: 3rem;
-    box-shadow: 18px 25px 50px 3px rgba(0,0,0,0.6);
+    box-shadow: 18px 25px 50px 3px rgba(0, 0, 0, 0.6);
   }
 
   .form label {
@@ -19,7 +19,7 @@
     font-size: 12px;
   }
 
-  .formBtn button{
+  .formBtn button {
     font-size: 12px !important;
     font-weight: 700;
   }
@@ -28,7 +28,7 @@
 .form {
   min-width: 240px;
   max-width: 380px;
-  min-height: 85vh;
+  min-height: 75vh;
   border-radius: 24px;
   padding: 16px 68px !important;
 }
@@ -49,4 +49,15 @@
 .formBtn button {
   width: 50%;
   border: 1px solid #198754;
+}
+
+.accountPara p {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.link {
+  text-decoration: none;
+  font-size: 16px;
+  margin: 5px;
 }
