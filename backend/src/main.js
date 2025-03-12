@@ -1,14 +1,10 @@
 const express = require("express");
-// const Cors = require("cors");
+require("dotenv").config();
 const app = express();
-const PORT = 8000;
 
 //connection middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-
-//cors middleware
-// app.use(Cors());
 
 //database connectio
 const connect = require("./model/connection");
@@ -20,4 +16,6 @@ connect("mongodb://127.0.0.1:27017/eShopingCart").then(
 const router = require("./routes");
 app.use("/form", router);
 
-app.listen(PORT, () => console.log(`http://localhost:${PORT}`));
+app.listen(process.env.PORT, () =>
+  console.log(`http://localhost:${process.env.PORT}`)
+);

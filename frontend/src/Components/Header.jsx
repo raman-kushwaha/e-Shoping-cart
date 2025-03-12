@@ -5,54 +5,58 @@ import Cookies from "js-cookie";
 import { Link, useNavigate } from "react-router-dom";
 import PrivateComponent_1 from "./PrivateComponent_1";
 import PrivateComponent_2 from "./PrivateComponent_2";
+import { useState } from "react";
+import ProfileContainer from "./ProfileContainer";
 
 const Header = () => {
   let token = Cookies.get("token");
-  const navigation = useNavigate();
+  const [isProfileVisible, setProfileVisible] = useState(false);
 
   const handleSlideBar = () => {
     const ul = document.querySelector(".list");
     ul.classList.toggle(`${styles.openSlide}`);
   };
 
-  const handleLogout = () => {
-    Cookies.remove("token");
-    window.location.reload();
-    navigation("/signup");
-  };
+  function handleProfile(event) {
+    console.log("Click To Profile Logo");
+    setProfileVisible(!isProfileVisible);
+  }
 
   return (
-    <header className={`container-fluid ${styles.fluid} shadow`}>
-      <nav className="container">
-        <div className="row align-items-center">
-          <div className="col-md-4">
-            <h2>
-              <Link to="/" className={styles.logo}>
-                LOGO
-              </Link>
-            </h2>
-          </div>
+    <>
+      <header className={`container-fluid ${styles.fluid} shadow`} id="header">
+        <nav className="container">
+          <div className="row align-items-center">
+            <div className="col-md-4">
+              <h2>
+                <Link to="/" className={styles.logo}>
+                  LOGO
+                </Link>
+              </h2>
+            </div>
 
-          <div className="col-md-8 d-flex justify-content-end">
-            <ul className={`${styles.firstList} list `}>
-              {!token ? (
-                <PrivateComponent_2 />
-              ) : (
-                <PrivateComponent_1
-                  handleLogout={handleLogout}
-                  CgProfile={CgProfile}
-                  styles={styles}
-                />
-              )}
-            </ul>
-            <IoReorderThreeOutline
-              className={`${styles.sideIcon}`}
-              onClick={handleSlideBar}
-            />
+            <div className="col-md-8 d-flex justify-content-end">
+              <ul className={`${styles.firstList} list `}>
+                {!token ? (
+                  <PrivateComponent_2 />
+                ) : (
+                  <PrivateComponent_1
+                    CgProfile={CgProfile}
+                    styles={styles}
+                    handleProfile={handleProfile}
+                  />
+                )}
+              </ul>
+              <IoReorderThreeOutline
+                className={`${styles.sideIcon}`}
+                onClick={handleSlideBar}
+              />
+            </div>
           </div>
-        </div>
-      </nav>
-    </header>
+        </nav>
+      </header>
+      {isProfileVisible && <ProfileContainer />}
+    </>
   );
 };
 

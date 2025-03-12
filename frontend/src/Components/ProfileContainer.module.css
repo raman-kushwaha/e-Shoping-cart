@@ -1,0 +1,51 @@
+@media only screen and (max-width: 1033px) {
+  .profileContainer {
+    width: 50% !important;
+  }
+}
+
+.profileContainer {
+  display: block !important;
+  position: fixed;
+  top: 78px;
+  left: 50%;
+  z-index: 10;
+  font-weight: 600;
+  transform: translate(-50%);
+  display: flex !important;
+  flex-direction: column;
+  justify-content: flex-end;
+  border-radius: 10px;
+  width: 30%;
+  color: rgb(32, 27, 27);
+  background: linear-gradient(to right, #f6f5f2, #bed7dc);
+  align-items: center;
+  gap: 8px !important;
+  list-style: none;
+  box-shadow: 0px 0px 10px 0px rgba(23px, 23px, 23px, 0.2);
+
+  animation: slideAnimationIn 300ms ease-in-out 1;
+}
+
+@keyframes slideAnimationIn {
+  to {
+    opacity: 100%;
+    top: 60px;
+  }
+  from {
+    opacity: 0%;
+    top: 0px;
+  }
+}
+
+.profileContainer ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0px -2px;
+}
+.profileContainer li {
+  list-style: none;
+  font-size: 20px;
+  cursor: pointer;
+}

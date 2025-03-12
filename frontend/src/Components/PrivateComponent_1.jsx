@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-function PrivateComponent_1({ handleLogout, CgProfile, styles }) {
+function PrivateComponent_1({ CgProfile, styles, handleProfile }) {
   return (
     <>
       <li>
@@ -12,13 +12,15 @@ function PrivateComponent_1({ handleLogout, CgProfile, styles }) {
       <li>
         <Link to="/update-product">Update Product</Link>
       </li>
-      <li onClick={handleLogout}>Logout</li>
       <li>
         <input type="text" className="form-control" placeholder="search" />
       </li>
       <li>
         <Link to="/">
-          <CgProfile className={`${styles.profileIcon}`} />
+          <CgProfile
+            className={`${styles.profileIcon}`}
+            onClick={handleProfile}
+          />
         </Link>
       </li>
     </>

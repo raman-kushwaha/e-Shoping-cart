@@ -1,6 +1,5 @@
 const userModal = require("../model/user Schame and  Model/userModel");
 const jwt = require("jsonwebtoken");
-require("dotenv").config();
 
 async function handleSignupForm(req, res) {
   let user = {};
@@ -34,10 +33,12 @@ async function handleLoginForm(req, res) {
   const { email, password } = req.body;
 
   try {
-    user = await userModal.findOne({
-      email: email,
-      password: password,
-    });
+    user = await userModal
+      .findOne({
+        email: email,
+        password: password,
+      })
+      .select("-password");
 
     if (!user) {
       throw new Error("User not Found");

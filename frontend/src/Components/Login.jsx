@@ -1,14 +1,22 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import styles from "./Login.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "../store/features/e-ShopingCartSlice";
+import Cookies from "js-cookie";
 
 const Login = () => {
   const Email = useRef();
   const Password = useRef();
   const dispatch = useDispatch();
   const navi = useNavigate();
+
+  useEffect(() => {
+    const token = Cookies.get("token");
+    if (token) {
+      navi("/");
+    }
+  }, []);
 
   const handleOnSubmitForm = (event) => {
     event.preventDefault();

@@ -1,8 +1,9 @@
 import styles from "./Signup.module.css";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { signup } from "../store/features/e-ShopingCartSlice";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 const Signup = () => {
   const userName = useRef();
@@ -12,6 +13,13 @@ const Signup = () => {
   const navigation = useNavigate();
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    const token = Cookies.get("token");
+    if (token) {
+      navigation("/");
+    }
+  }, []);
 
   const handleOnSubmitForm = (event) => {
     event.preventDefault();
