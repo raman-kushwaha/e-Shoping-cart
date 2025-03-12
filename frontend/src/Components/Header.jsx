@@ -2,7 +2,7 @@ import styles from "./Header.module.css";
 import { CgProfile } from "react-icons/cg";
 import { IoReorderThreeOutline } from "react-icons/io5";
 import Cookies from "js-cookie";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import PrivateComponent_1 from "./PrivateComponent_1";
 import PrivateComponent_2 from "./PrivateComponent_2";
 import { useState } from "react";
@@ -18,7 +18,6 @@ const Header = () => {
   };
 
   function handleProfile(event) {
-    console.log("Click To Profile Logo");
     setProfileVisible(!isProfileVisible);
   }
 

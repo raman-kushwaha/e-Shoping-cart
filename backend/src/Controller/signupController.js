@@ -51,7 +51,13 @@ async function handleLoginForm(req, res) {
     return res.status(404).json({ err: "user not found" });
   }
 
-  return res.json({ token: token });
+  return res.json({
+    token: token,
+    ...{
+      username: user.username,
+      email: user.email,
+    },
+  });
 }
 
 module.exports = { handleSignupForm, handleLoginForm };
