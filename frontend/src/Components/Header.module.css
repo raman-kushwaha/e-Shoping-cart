@@ -141,3 +141,9 @@
   list-style: none;
   box-shadow: 8px 25px 50px 3px rgba(0, 0, 0, 0.6);
 }
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}

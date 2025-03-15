@@ -2,38 +2,40 @@ import styles from "./Item.module.css";
 import { FaCartPlus } from "react-icons/fa6";
 
 const Item = ({ item }) => {
+  console.log(item);
+
   return (
-    <div className={`${styles.card} px-2`} style={{ width: "20rem" }}>
+    <div class={`${styles.card}`}>
       <img
+        style={{ height: "14rem" }}
         src={item.image}
-        className={`${styles.imgSection} img-fluid`}
-        alt=""
+        class={`card-img-top ${styles.card_img}`}
+        alt="image"
       />
-      <div className={`${styles.card_body}`}>
-        <h5 className={`${styles.card_title}`}>{item.title}</h5>
-        <p className={`${styles.card_text}`}>
-          {`${item.description}`.slice(0, 100) + "..."}
+      <div class="card-body">
+        <h5 class={`card-title ${styles.title}`}>{item.title}</h5>
+        <p
+          class={`card-text ${styles.description}`}
+          style={{ overflow: "hidden" }}
+        >
+          {`${item.description}`.slice(0, 80)}
         </p>
-        <p className={`${styles.category}`}>Category : {item.category}</p>
-        <div className={styles.cont}>
-          <div className={`${styles.rating}`}>
-            <p>rating : {item.rating.rate} ⭐⭐⭐⭐⭐</p>
-          </div>
-          <p className={`${styles.pricing}`}>
-            <span>Price</span> : ${item.price}
-          </p>
+
+        <p className={styles.category}>category : {item.category}</p>
+        <p className={styles.pricing}>price : ${item.price}</p>
+        <p className={styles.rating}>
+          rating : {item.rating.rate} <span> ⭐⭐⭐⭐⭐</span>
+        </p>
+
+        <div className={styles.btnContainer}>
+          <button className="btn btn-success">
+            <FaCartPlus />
+          </button>
+          <button className="btn btn-success">Buy</button>
         </div>
-      </div>
-      <div className={styles.btnClass}>
-        <button className="btn btn-success d-flex align-items-center gap-3">
-          <FaCartPlus className="fs-3" /> Add To Cart
-        </button>
-        <button className="btn btn-success">Buy</button>
       </div>
     </div>
   );
 };
 
 export default Item;
-
-// "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg
