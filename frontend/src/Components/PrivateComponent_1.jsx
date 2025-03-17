@@ -16,7 +16,7 @@ function PrivateComponent_1({ CgProfile, styles, handleProfile }) {
         <input type="text" className="form-control" placeholder="search" />
       </li>
       <li>
-        <Link to="/" className={styles.profile} onClick={handleProfile}>
+        <Link to="#" className={styles.profile} onClick={handleProfile}>
           <CgProfile className={`${styles.profileIcon}`} />
           Profile
         </Link>

@@ -41,7 +41,7 @@ const Login = () => {
           <div className="col-6 mx-auto my-5">
             <form
               onSubmit={handleOnSubmitForm}
-              action="/submit"
+              // action="/submit"
               method="post"
               className={`${styles.form} shadow-lg p-5 mx-auto`}
             >

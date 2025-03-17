@@ -6,6 +6,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/form": "http://localhost:8004",
+      "/api/products": "http://localhost:8004",
     },
   },
   plugins: [react()],

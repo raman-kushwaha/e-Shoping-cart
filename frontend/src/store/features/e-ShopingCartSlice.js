@@ -12,8 +12,18 @@ const cartSlice = createSlice({
     products: (state, action) => {
       state.productList = [...action.payload];
     },
-    addProducts: (state, action) => {
-      console.log("Add Product");
+    addProduct: (state, action) => {
+      state.productList = [action.payload];
+
+      //fakeStore Server, which is not actually store in the database
+      axios
+        .post("https://fakestoreapi.com/products", {
+          ...action.payload,
+          id: `${Date.now()}`,
+        })
+        .then((res) => {});
+
+      console.log(state.productList);
     },
     signup: (state, action) => {
       axios.post("/form/signup", action.payload);
@@ -26,5 +36,5 @@ const cartSlice = createSlice({
   },
 });
 
-export const { products, signup, login } = cartSlice.actions;
+export const { products, addProduct, signup, login } = cartSlice.actions;
 export default cartSlice.reducer;

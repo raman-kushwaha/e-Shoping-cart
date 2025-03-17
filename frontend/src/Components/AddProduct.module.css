@@ -1,0 +1,14 @@
+.form {
+  width: 22rem;
+}
+
+.heading {
+  font-size: 24px;
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+
+.form {
+  border-radius: 12px;
+}

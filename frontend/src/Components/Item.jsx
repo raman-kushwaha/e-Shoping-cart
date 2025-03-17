@@ -2,20 +2,18 @@ import styles from "./Item.module.css";
 import { FaCartPlus } from "react-icons/fa6";
 
 const Item = ({ item }) => {
-  console.log(item);
-
   return (
-    <div class={`${styles.card}`}>
+    <div className={`${styles.card}`}>
       <img
         style={{ height: "14rem" }}
         src={item.image}
-        class={`card-img-top ${styles.card_img}`}
+        className={`card-img-top ${styles.card_img}`}
         alt="image"
       />
-      <div class="card-body">
-        <h5 class={`card-title ${styles.title}`}>{item.title}</h5>
+      <div className="card-body">
+        <h5 className={`card-title ${styles.title}`}>{item.title}</h5>
         <p
-          class={`card-text ${styles.description}`}
+          className={`card-text ${styles.description}`}
           style={{ overflow: "hidden" }}
         >
           {`${item.description}`.slice(0, 80)}
