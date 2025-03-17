@@ -13,8 +13,10 @@ connect("mongodb://127.0.0.1:27017/eShopingCart").then(
 );
 
 //routes
-const router = require("./routes");
-app.use("/form", router);
+const staticRoute = require("./staticRoute");
+const productRoute = require("./productRoute");
+app.use("/form", staticRoute);
+app.use("/api/products", productRoute);
 
 app.listen(process.env.PORT, () =>
   console.log(`http://localhost:${process.env.PORT}`)

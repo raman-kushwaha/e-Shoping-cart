@@ -2,6 +2,7 @@ const express = require("express");
 const {
   handleSignupForm,
   handleLoginForm,
+  handleAddProduct,
 } = require("./Controller/signupController");
 
 const router = express.Router();
