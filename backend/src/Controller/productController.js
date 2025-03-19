@@ -1,16 +1,25 @@
+const { default: mongoose } = require("mongoose");
 const productModel = require("../model/Product Schema and Model/productModel");
+const {
+  requiredPaths,
+} = require("../model/Product Schema and Model/productSchema");
+
+async function handleGetProduct(req, res) {
+  const products = await productModel.find();
+
+  return res.status(200).json(products);
+}
 
 async function handleAddProduct(req, res) {
   const body = req.body;
-  console.log(body);
 
   try {
     if (
-      !body.title ||
-      !body.description ||
-      !body.category ||
-      !body.price ||
-      !body.image
+      body.title === "" ||
+      body.description === "" ||
+      body.category === "" ||
+      body.price === "" ||
+      body.image === ""
     )
       return res.status(404).json({ err: "All fields must required" });
 
@@ -25,16 +34,18 @@ async function handleAddProduct(req, res) {
 
     return res.status(200).json(product);
   } catch (err) {
-    console.log(err);
+    return res.status(404).json(err);
   }
 }
 
-async function handleGetProduct(req, res) {
-  const products = await productModel.find();
+async function handleDeleteProduct(req, res) {
+  let id = req.params.id.toString();
+  id = id.replace(":", "");
 
-  console.log(products);
+  const product = await productModel.findByIdAndDelete(id);
 
-  return res.status(200).json(products);
+  console.log(product);
+
+  return res.status(200).json(product);
 }
-
-module.exports = { handleAddProduct, handleGetProduct };
+module.exports = { handleAddProduct, handleGetProduct, handleDeleteProduct };

@@ -25,6 +25,18 @@ const cartSlice = createSlice({
 
       console.log(state.productList);
     },
+    deleteProduct: (state, action) => {
+      let deletedProduct;
+
+      axios.delete(`/api/products/:${action.payload.id}`).then((res) => {
+        deletedProduct = res.data;
+        window.location.reload();
+      });
+
+      state.productList = state.productList.filter(
+        (item) => item._id !== deletedProduct
+      );
+    },
     signup: (state, action) => {
       axios.post("/form/signup", action.payload);
     },
@@ -36,5 +48,6 @@ const cartSlice = createSlice({
   },
 });
 
-export const { products, addProduct, signup, login } = cartSlice.actions;
+export const { products, addProduct, signup, login, deleteProduct } =
+  cartSlice.actions;
 export default cartSlice.reducer;

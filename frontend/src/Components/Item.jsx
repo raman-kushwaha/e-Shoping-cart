@@ -1,7 +1,8 @@
 import styles from "./Item.module.css";
 import { FaCartPlus } from "react-icons/fa6";
+import { TbGitBranchDeleted } from "react-icons/tb";
 
-const Item = ({ item }) => {
+const Item = ({ item, handleOnDelete }) => {
   return (
     <div className={`${styles.card}`}>
       <img
@@ -28,6 +29,12 @@ const Item = ({ item }) => {
         <div className={styles.btnContainer}>
           <button className="btn btn-success">
             <FaCartPlus />
+          </button>
+          <button
+            className="btn btn-danger"
+            onClick={() => handleOnDelete(item._id)}
+          >
+            {<TbGitBranchDeleted className={styles.icon} />}
           </button>
           <button className="btn btn-success">Buy</button>
         </div>
