@@ -4,10 +4,11 @@ const {
   handleLoginForm,
   handleAddProduct,
 } = require("./Controller/signupController");
+const authentication = require("./auth/auth");
 
 const router = express.Router();
 
 router.post("/signup", handleSignupForm);
-router.post("/login", handleLoginForm);
+router.post("/login", authentication, handleLoginForm);
 
 module.exports = router;

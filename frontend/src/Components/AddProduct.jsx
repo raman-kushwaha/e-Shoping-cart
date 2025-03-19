@@ -40,6 +40,9 @@ const AddProduct = () => {
       .then((res) => {
         dispatch(addProduct(res.data));
         navigation("/");
+      })
+      .catch((err) => {
+        alert(err.response.data.err);
       });
   };
 

@@ -7,8 +7,8 @@ import axios from "axios";
 import { products } from "../store/features/e-ShopingCartSlice";
 
 const Products = () => {
-  const productList = useSelector((state) => state.cartReducer.productList);
   const dispatch = useDispatch();
+  const productList = useSelector((state) => state.cartReducer.productList);
 
   const [isFetch, setFetch] = useState(true);
 
@@ -16,15 +16,27 @@ const Products = () => {
     setFetch(true);
     axios.get("https://fakestoreapi.com/products").then((res) => {
       dispatch(products(res.data));
+      if (res.data.id) {
+        _id = res.data.id;
+      } else if (res.data._id) {
+        _id = res.data._id;
+      }
       setFetch(false);
     });
+
+    // axios.get("/api/products").then((res) => {
+    //   dispatch(products(res.data));
+    //   setFetch(false);
+    // });
   }, []);
 
   return (
     <div className={styles.productList}>
       {isFetch && <LoaderSpinner />}
       {!isFetch &&
-        productList.map((item) => <Item key={item.id} item={item} />)}
+        productList.map((item) => {
+          return <Item key={item.id} item={item} />;
+        })}
     </div>
   );
 };

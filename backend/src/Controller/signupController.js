@@ -1,6 +1,3 @@
-const userModal = require("../model/user Schame and  Model/userModel");
-const jwt = require("jsonwebtoken");
-
 async function handleSignupForm(req, res) {
   let user = {};
   const { username, email, password, confirmpassword } = req.body;
@@ -27,36 +24,8 @@ async function handleSignupForm(req, res) {
 }
 
 async function handleLoginForm(req, res) {
-  let user;
-  let token;
-
-  const { email, password } = req.body;
-
-  try {
-    user = await userModal
-      .findOne({
-        email: email,
-        password: password,
-      })
-      .select("-password");
-
-    if (!user) {
-      throw new Error("User not Found");
-    }
-
-    if (user) token = jwt.sign({ ...user }, process.env.SECRET_KEY);
-
-    res.cookie("token", token);
-  } catch (err) {
-    return res.status(404).json({ err: "user not found" });
-  }
-
   return res.json({
-    token: token,
-    ...{
-      username: user.username,
-      email: user.email,
-    },
+    token: req.token,
   });
 }
 

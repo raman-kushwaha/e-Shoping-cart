@@ -5,7 +5,14 @@ async function handleAddProduct(req, res) {
   console.log(body);
 
   try {
-    if (!body) return res.status(404).json({ err: "All fields must required" });
+    if (
+      !body.title ||
+      !body.description ||
+      !body.category ||
+      !body.price ||
+      !body.image
+    )
+      return res.status(404).json({ err: "All fields must required" });
 
     const product = await productModel.create({
       title: body.title,
@@ -22,4 +29,12 @@ async function handleAddProduct(req, res) {
   }
 }
 
-module.exports = { handleAddProduct };
+async function handleGetProduct(req, res) {
+  const products = await productModel.find();
+
+  console.log(products);
+
+  return res.status(200).json(products);
+}
+
+module.exports = { handleAddProduct, handleGetProduct };
