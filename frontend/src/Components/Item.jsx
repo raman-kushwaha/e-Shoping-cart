@@ -1,10 +1,16 @@
 import styles from "./Item.module.css";
 import { FaCartPlus } from "react-icons/fa6";
-import { TbGitBranchDeleted } from "react-icons/tb";
+import { MdDelete } from "react-icons/md";
+import { GrUpdate } from "react-icons/gr";
 
-const Item = ({ item, handleOnDelete }) => {
+const Item = ({ item, handleOnDelete, handleOnUpdate }) => {
   return (
     <div className={`${styles.card}`}>
+      {/* change item.id if you want to run fakeStore api or // if change
+        item._id if you want to run real database api */}
+      <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+        <MdDelete onClick={() => handleOnDelete(item.id)} />
+      </span>
       <img
         style={{ height: "14rem" }}
         src={item.image}
@@ -31,10 +37,11 @@ const Item = ({ item, handleOnDelete }) => {
             <FaCartPlus />
           </button>
           <button
+            // change item.id if you want to run fakeStore api or  change  item._id if you want to run real database api
             className="btn btn-danger"
-            onClick={() => handleOnDelete(item._id)}
+            onClick={() => handleOnUpdate(item.id)}
           >
-            {<TbGitBranchDeleted className={styles.icon} />}
+            {<GrUpdate className={styles.icon} />}
           </button>
           <button className="btn btn-success">Buy</button>
         </div>

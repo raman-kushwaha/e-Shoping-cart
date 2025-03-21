@@ -3,6 +3,7 @@ import axios from "axios";
 
 const initialState = {
   productList: [],
+  handleaddproduct: {},
 };
 
 const cartSlice = createSlice({
@@ -26,6 +27,12 @@ const cartSlice = createSlice({
       console.log(state.productList);
     },
     deleteProduct: (state, action) => {
+      console.log(state.productList);
+
+      alert(`product deleted successfully`);
+      //visit to the product component and change few things as follow
+
+      /*
       let deletedProduct;
 
       axios.delete(`/api/products/:${action.payload.id}`).then((res) => {
@@ -36,6 +43,43 @@ const cartSlice = createSlice({
       state.productList = state.productList.filter(
         (item) => item._id !== deletedProduct
       );
+*/
+    },
+    updateProduct: (state, action) => {
+      // const requestForUpdate = state.productList.find(
+      //   (item) => item._id === action.payload.id
+      // );
+
+      //abover is specify item._id(real api) and below is specify item.id(fakeStore)
+
+      // /*
+      const requestForUpdate = state.productList.find(
+        (item) => item.id === action.payload.id
+      );
+
+      // */
+
+      state.handleaddproduct = requestForUpdate;
+    },
+    addUpdatedProduct: (state, action) => {
+      /*  
+          axios //uncomment the below command if you want to use real api to updateProduct
+          .patch(`/api/products/${action.payload.id}`, action.payload)
+          .then((res) => console.log(res.data))
+          .catch((err) => alert(err));
+*/
+    },
+    searchProduct: (state, action) => {
+      if (
+        action.payload.search === null ||
+        action.payload.search === undefined
+      ) {
+        state.productList = [];
+      } else {
+        state.productList = action.payload.search;
+      }
+
+      console.log(action.payload.search);
     },
     signup: (state, action) => {
       axios.post("/form/signup", action.payload);
@@ -48,6 +92,14 @@ const cartSlice = createSlice({
   },
 });
 
-export const { products, addProduct, signup, login, deleteProduct } =
-  cartSlice.actions;
+export const {
+  products,
+  addProduct,
+  signup,
+  login,
+  deleteProduct,
+  updateProduct,
+  addUpdatedProduct,
+  searchProduct,
+} = cartSlice.actions;
 export default cartSlice.reducer;

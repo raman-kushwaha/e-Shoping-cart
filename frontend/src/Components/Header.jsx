@@ -7,10 +7,18 @@ import PrivateComponent_1 from "./PrivateComponent_1";
 import PrivateComponent_2 from "./PrivateComponent_2";
 import { useState } from "react";
 import ProfileContainer from "./ProfileContainer";
+import { useDispatch } from "react-redux";
+import { searchProduct } from "../store/features/e-ShopingCartSlice";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   let token = Cookies.get("token");
   const [isProfileVisible, setProfileVisible] = useState(false);
+
+  const navigate = useNavigate();
+
+  const dispatch = useDispatch();
 
   const handleSlideBar = () => {
     const ul = document.querySelector(".list");
@@ -21,6 +29,32 @@ const Header = () => {
     setProfileVisible(!isProfileVisible);
   }
 
+  function handleOnChange(event) {
+    console.log(event);
+  }
+
+  function handleOnChange(event) {
+    axios
+      .get(`/api/products/search/${event.target.value}`)
+      .then((res) => {
+        if (event.target.value === "") {
+          dispatch(
+            searchProduct({
+              search: [],
+            })
+          );
+        } else {
+          dispatch(
+            searchProduct({
+              search: res.data,
+            })
+          );
+        }
+      })
+      .catch((err) => console.log(err));
+
+    // console.log(event.target.value);
+  }
   return (
     <>
       <header className={`container-fluid ${styles.fluid} shadow`} id="header">
@@ -37,12 +71,13 @@ const Header = () => {
             <div className="col-md-8 d-flex justify-content-end">
               <ul className={`${styles.firstList} list `}>
                 {!token ? (
-                  <PrivateComponent_2 />
+                  <PrivateComponent_2 handleOnChange={handleOnChange} />
                 ) : (
                   <PrivateComponent_1
                     CgProfile={CgProfile}
                     styles={styles}
                     handleProfile={handleProfile}
+                    handleOnChange={handleOnChange}
                   />
                 )}
               </ul>

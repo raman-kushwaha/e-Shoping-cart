@@ -4,11 +4,18 @@ import Item from "./Item";
 import LoaderSpinner from "./LoaderSpinner";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { deleteProduct, products } from "../store/features/e-ShopingCartSlice";
+import MessageComponent from "./MessageComponent";
+import { useNavigate } from "react-router-dom";
+import {
+  deleteProduct,
+  products,
+  updateProduct,
+} from "../store/features/e-ShopingCartSlice";
 
 const Products = () => {
   const dispatch = useDispatch();
   const productList = useSelector((state) => state.cartReducer.productList);
+  const navigation = useNavigate();
 
   const [isFetch, setFetch] = useState(true);
 
@@ -18,12 +25,8 @@ const Products = () => {
     //this api is fake it only show the product and do nothing
 
     axios.get("https://fakestoreapi.com/products").then((res) => {
+      //visit to the item component to chatge item._id to item.id
       dispatch(products(res.data));
-      if (res.data.id) {
-        _id = res.data.id;
-      } else if (res.data._id) {
-        _id = res.data._id;
-      }
       setFetch(false);
     });
 
@@ -32,25 +35,40 @@ const Products = () => {
     // will be able to use this api
 
     // axios.get("/api/products").then((res) => {
+    //   //visit to the item component to chatge item.id to item._id
     //   dispatch(products(res.data));
     //   setFetch(false);
     // });
+
+    /////////////////////////////////////////////////////////////////////////////////////////
   }, []);
 
   const handleOnDelete = (id) => {
     dispatch(deleteProduct({ id }));
   };
 
+  const handleOnUpdate = (id) => {
+    dispatch(updateProduct({ id }));
+    navigation("/update-product");
+  };
+
   return (
     <div className={styles.productList}>
       {isFetch && <LoaderSpinner />}
-      {!isFetch &&
+      {!isFetch && productList.length === 0 ? (
+        <MessageComponent />
+      ) : (
         productList.map((item) => {
           return (
-            //when you use real api insted of fake then kindly replace id to _id i key
-            <Item key={item.id} item={item} handleOnDelete={handleOnDelete} />
+            <Item
+              key={item.id} //when you use real api insted of fake then kindly replace id to _id i key
+              item={item}
+              handleOnDelete={handleOnDelete}
+              handleOnUpdate={handleOnUpdate}
+            />
           );
-        })}
+        })
+      )}
     </div>
   );
 };

@@ -1,9 +1,10 @@
 import styles from "./AddProduct.module.css";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { addProduct } from "../store/features/e-ShopingCartSlice";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 const AddProduct = () => {
   const productTitle = useRef();
@@ -16,6 +17,12 @@ const AddProduct = () => {
 
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    if (!Cookies.get("token")) {
+      navigation("/");
+    }
+  }, []);
+
   const handleAddProduct = (event) => {
     event.preventDefault();
 
@@ -25,6 +32,12 @@ const AddProduct = () => {
     const price = Number(productPrice.current.value);
     const imgUrl = productImageURL.current.value;
 
+    alert("add successfully");
+    navigation("/");
+
+    // working with real api then uncomment it and don't forget to comment the fake store api
+
+    /*
     axios
       .post("/api/products/add-product", {
         title,
@@ -44,6 +57,7 @@ const AddProduct = () => {
       .catch((err) => {
         alert(err.response.data.err);
       });
+    */
   };
 
   return (
@@ -124,12 +138,3 @@ const AddProduct = () => {
 };
 
 export default AddProduct;
-
-// {
-//   "id": 0,                           -->    //getting from database
-//   "title": "string",                 -->    //getting from user
-//   "price": 0.1,                      -->    //getting from user
-//   "description": "string",           -->    //getting from user
-//   "category": "string",              -->    //getting from user
-//   "image": "http://example.com"      -->    //getting from user
-//   }

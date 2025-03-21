@@ -1,6 +1,11 @@
 import { Link } from "react-router-dom";
 
-function PrivateComponent_1({ CgProfile, styles, handleProfile }) {
+function PrivateComponent_1({
+  CgProfile,
+  styles,
+  handleProfile,
+  handleOnChange,
+}) {
   return (
     <>
       <li>
@@ -9,11 +14,17 @@ function PrivateComponent_1({ CgProfile, styles, handleProfile }) {
       <li>
         <Link to="/add-product">Add Product</Link>
       </li>
-      <li>
+      <li onClick={() => window.location.reload()}>
+        {/* window.location.reload() remove this  */}
         <Link to="/update-product">Update Product</Link>
       </li>
       <li>
-        <input type="text" className="form-control" placeholder="search" />
+        <input
+          type="text"
+          className="form-control"
+          placeholder="search"
+          onChange={handleOnChange}
+        />
       </li>
       <li>
         <Link to="#" className={styles.profile} onClick={handleProfile}>

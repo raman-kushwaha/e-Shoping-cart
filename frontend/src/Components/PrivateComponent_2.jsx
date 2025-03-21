@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-function PrivateComponent_2({ styles }) {
+function PrivateComponent_2({ handleOnChange }) {
   return (
     <>
       <li>
@@ -9,8 +9,13 @@ function PrivateComponent_2({ styles }) {
       <li>
         <Link to="/">Products</Link>
       </li>
-      <li>
-        <input type="text" className="form-control" placeholder="search" />
+      <li className={`d-flex gap-0`}>
+        <input
+          type="text"
+          className={`form-control `}
+          placeholder="search"
+          onChange={handleOnChange}
+        />
       </li>
     </>
   );
