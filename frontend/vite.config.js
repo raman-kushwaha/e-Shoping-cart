@@ -8,6 +8,7 @@ export default defineConfig({
       "/form": "http://localhost:8004",
       "/api/products": "http://localhost:8004",
       "/api/products/:id": "http://localhost:8004",
+      "/postDataByAnotherAPI": "http://localhost:8004",
     },
   },
   plugins: [react()],

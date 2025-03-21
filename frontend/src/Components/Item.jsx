@@ -6,10 +6,8 @@ import { GrUpdate } from "react-icons/gr";
 const Item = ({ item, handleOnDelete, handleOnUpdate }) => {
   return (
     <div className={`${styles.card}`}>
-      {/* change item.id if you want to run fakeStore api or // if change
-        item._id if you want to run real database api */}
       <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-        <MdDelete onClick={() => handleOnDelete(item.id)} />
+        <MdDelete onClick={() => handleOnDelete(item._id)} />
       </span>
       <img
         style={{ height: "14rem" }}
@@ -37,9 +35,8 @@ const Item = ({ item, handleOnDelete, handleOnUpdate }) => {
             <FaCartPlus />
           </button>
           <button
-            // change item.id if you want to run fakeStore api or  change  item._id if you want to run real database api
             className="btn btn-danger"
-            onClick={() => handleOnUpdate(item.id)}
+            onClick={() => handleOnUpdate(item._id)}
           >
             {<GrUpdate className={styles.icon} />}
           </button>

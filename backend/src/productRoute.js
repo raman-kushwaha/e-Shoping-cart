@@ -15,5 +15,4 @@ router.get("/search/:id", handleSearchProductByKey);
 router.post("/add-product", handleAddProduct);
 router.delete("/:id", handleDeleteProduct);
 router.patch("/:id", handleUpdateProduct);
-
 module.exports = router;

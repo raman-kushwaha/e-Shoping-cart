@@ -12,6 +12,12 @@ import { searchProduct } from "../store/features/e-ShopingCartSlice";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+const config = {
+  headers: {
+    authorization: `Bearer ${Cookies.get("token")}`,
+  },
+};
+
 const Header = () => {
   let token = Cookies.get("token");
   const [isProfileVisible, setProfileVisible] = useState(false);
@@ -35,7 +41,7 @@ const Header = () => {
 
   function handleOnChange(event) {
     axios
-      .get(`/api/products/search/${event.target.value}`)
+      .get(`/api/products/search/${event.target.value}`, config)
       .then((res) => {
         if (event.target.value === "") {
           dispatch(

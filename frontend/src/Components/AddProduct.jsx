@@ -32,12 +32,6 @@ const AddProduct = () => {
     const price = Number(productPrice.current.value);
     const imgUrl = productImageURL.current.value;
 
-    alert("add successfully");
-    navigation("/");
-
-    // working with real api then uncomment it and don't forget to comment the fake store api
-
-    /*
     axios
       .post("/api/products/add-product", {
         title,
@@ -57,7 +51,6 @@ const AddProduct = () => {
       .catch((err) => {
         alert(err.response.data.err);
       });
-    */
   };
 
   return (

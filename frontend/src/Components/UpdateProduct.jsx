@@ -45,6 +45,15 @@ const UpdateProduct = () => {
     const price = productPrice.current.value;
     const imgUrl = productImageURL.current.value;
 
+    if (
+      title === "" ||
+      description === "" ||
+      category === "" ||
+      price === "" ||
+      imgUrl === ""
+    ) {
+      alert("all fields must required");
+    }
     dispatch(
       addUpdatedProduct({
         id: handleaddproduct._id,
@@ -128,7 +137,6 @@ const UpdateProduct = () => {
                   className="btn btn-primary"
                   onClick={() => {
                     navigation("/");
-                    alert("update success...!");
                   }}
                 >
                   Submit

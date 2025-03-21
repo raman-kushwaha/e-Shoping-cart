@@ -1,4 +1,3 @@
-const { default: mongoose } = require("mongoose");
 const productModel = require("../model/Product Schema and Model/productModel");
 const {
   requiredPaths,
@@ -61,6 +60,16 @@ async function handleUpdateProduct(req, res) {
   const updatedProduct = req.body;
 
   try {
+    if (
+      updatedProduct.title === "" ||
+      updatedProduct.description === "" ||
+      updatedProduct.category === "" ||
+      updatedProduct.price === "" ||
+      updatedProduct.image === ""
+    ) {
+      return res.status(404).json({ err: "All fields must required" });
+    }
+
     const product = await productModel.findByIdAndUpdate(
       id,
       updatedProduct
@@ -90,6 +99,7 @@ async function handleSearchProductByKey(req, res) {
 
   return res.status(200).json(product);
 }
+
 module.exports = {
   handleAddProduct,
   handleGetProducts,

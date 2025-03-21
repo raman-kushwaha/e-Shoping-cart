@@ -22,25 +22,10 @@ const Products = () => {
   useEffect(() => {
     setFetch(true);
 
-    //this api is fake it only show the product and do nothing
-
-    axios.get("https://fakestoreapi.com/products").then((res) => {
-      //visit to the item component to chatge item._id to item.id
+    axios.get("/api/products").then((res) => {
       dispatch(products(res.data));
       setFetch(false);
     });
-
-    //and this api is real which is capabe ot store the product details insted of show you can update ,
-    // delete the product as well if you want to use this api then first comment the above api after that you
-    // will be able to use this api
-
-    // axios.get("/api/products").then((res) => {
-    //   //visit to the item component to chatge item.id to item._id
-    //   dispatch(products(res.data));
-    //   setFetch(false);
-    // });
-
-    /////////////////////////////////////////////////////////////////////////////////////////
   }, []);
 
   const handleOnDelete = (id) => {
@@ -61,7 +46,7 @@ const Products = () => {
         productList.map((item) => {
           return (
             <Item
-              key={item.id} //when you use real api insted of fake then kindly replace id to _id i key
+              key={item._id}
               item={item}
               handleOnDelete={handleOnDelete}
               handleOnUpdate={handleOnUpdate}
