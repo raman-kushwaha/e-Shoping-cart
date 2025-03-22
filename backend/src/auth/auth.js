@@ -2,30 +2,27 @@ const userModal = require("../model/user Schame and  Model/userModel");
 const jwt = require("jsonwebtoken");
 
 async function authentication(req, res, next) {
-  const { email, password } = req.body;
+  const body = req.body;
+
+  if (body.email === "" || body.password === "")
+    return res.status(404).json({ err: "Invalid email or password" });
 
   try {
-    if (email === "" || password === "") {
-      return res.status(404).json({ err: "All Fields Must Required!" });
-    }
-
     const user = await userModal
       .findOne({
-        email: email,
-        password: password,
+        email: body.email,
+        password: body.password,
       })
       .select("-password");
 
-    if (user == null) {
-      return res.status(404).json({ err: "user not found" });
-    }
+    if (user === null) return res.status(404).json({ err: "user not found" });
 
-    if (user) {
-      req.token = jwt.sign({ ...user }, process.env.SECRET_KEY);
-      res.cookie("token", req.token);
+    req.token = jwt.sign({ ...user }, process.env.SECRET_KEY, {
+      expiresIn: "1h",
+    });
 
-      next();
-    }
+    res.cookie("token", req.token);
+    if (req.token) next();
   } catch (err) {
     return res.status(404).json(err);
   }

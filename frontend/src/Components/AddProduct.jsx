@@ -32,8 +32,11 @@ const AddProduct = () => {
     const price = Number(productPrice.current.value);
     const imgUrl = productImageURL.current.value;
 
-    axios
-      .post("/api/products/add-product", {
+    const config = {
+      headers: {
+        authorization: `Bearer ${Cookies.get("token")}`,
+      },
+      body: {
         title,
         description,
         category,
@@ -43,13 +46,17 @@ const AddProduct = () => {
           rate: Math.round(Math.random() * 4),
           count: Math.round(Math.random() * 500),
         },
-      })
+      },
+    };
+
+    axios
+      .post("/api/products/add-product", config)
       .then((res) => {
         dispatch(addProduct(res.data));
         navigation("/");
       })
       .catch((err) => {
-        alert(err.response.data.err);
+        alert(err.response.data);
       });
   };
 

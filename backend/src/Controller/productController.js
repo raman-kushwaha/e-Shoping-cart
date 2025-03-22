@@ -16,7 +16,7 @@ async function handleGetSingleProduct(req, res) {
 }
 
 async function handleAddProduct(req, res) {
-  const body = req.body;
+  const body = req.body.body;
 
   try {
     if (
@@ -49,15 +49,13 @@ async function handleDeleteProduct(req, res) {
 
   const product = await productModel.findByIdAndDelete(id);
 
-  console.log(product);
-
   return res.status(200).json(product);
 }
 
 async function handleUpdateProduct(req, res) {
   const id = req.params.id;
 
-  const updatedProduct = req.body;
+  const updatedProduct = req.body.body;
 
   try {
     if (

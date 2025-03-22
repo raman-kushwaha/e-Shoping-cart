@@ -2,12 +2,15 @@ import styles from "./Item.module.css";
 import { FaCartPlus } from "react-icons/fa6";
 import { MdDelete } from "react-icons/md";
 import { GrUpdate } from "react-icons/gr";
+import Cookies from "js-cookie";
 
 const Item = ({ item, handleOnDelete, handleOnUpdate }) => {
   return (
     <div className={`${styles.card}`}>
       <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-        <MdDelete onClick={() => handleOnDelete(item._id)} />
+        {Cookies.get("token") && (
+          <MdDelete onClick={() => handleOnDelete(item._id)} />
+        )}
       </span>
       <img
         style={{ height: "14rem" }}
@@ -34,12 +37,14 @@ const Item = ({ item, handleOnDelete, handleOnUpdate }) => {
           <button className="btn btn-success">
             <FaCartPlus />
           </button>
-          <button
-            className="btn btn-danger"
-            onClick={() => handleOnUpdate(item._id)}
-          >
-            {<GrUpdate className={styles.icon} />}
-          </button>
+          {Cookies.get("token") && (
+            <button
+              className="btn btn-danger"
+              onClick={() => handleOnUpdate(item._id)}
+            >
+              {<GrUpdate className={styles.icon} />}
+            </button>
+          )}
           <button className="btn btn-success">Buy</button>
         </div>
       </div>

@@ -57,7 +57,7 @@ const Header = () => {
           );
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => alert(err.response.data));
 
     // console.log(event.target.value);
   }

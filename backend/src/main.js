@@ -2,10 +2,14 @@ const express = require("express");
 require("dotenv").config();
 const app = express();
 const fs = require("fs");
+const cookieParser = require("cookie-parser");
 
 //connection middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+//cookie-parser
+app.use(cookieParser());
 
 //database connectio
 const connect = require("./model/connection");

@@ -22,16 +22,6 @@ const cartSlice = createSlice({
     },
     addProduct: (state, action) => {
       state.productList = [action.payload];
-
-      axios
-        .post("https://fakestoreapi.com/products", {
-          config,
-          ...action.payload,
-          id: `${Date.now()}`,
-        })
-        .then((res) => {});
-
-      console.log(state.productList);
     },
     deleteProduct: (state, action) => {
       let deletedProduct;
@@ -41,7 +31,8 @@ const cartSlice = createSlice({
         .then((res) => {
           deletedProduct = res.data;
           window.location.reload();
-        });
+        })
+        .catch((err) => alert(err.response.data));
 
       state.productList = state.productList.filter(
         (item) => item._id !== deletedProduct
@@ -55,9 +46,18 @@ const cartSlice = createSlice({
       state.handleaddproduct = requestForUpdate;
     },
     addUpdatedProduct: (state, action) => {
+      const config = {
+        body: {
+          ...action.payload,
+        },
+        headers: {
+          authorization: `Bearer ${Cookies.get("token")}`,
+        },
+      };
       axios
-        .patch(`/api/products/${action.payload.id}`, action.payload, config)
-        .then((res) => console.log(res.data));
+        .patch(`/api/products/${action.payload.id}`, config)
+        .then((res) => console.log(res.data))
+        .catch((err) => alert(err.response.data));
     },
     searchProduct: (state, action) => {
       if (
@@ -73,9 +73,7 @@ const cartSlice = createSlice({
       axios.post("/form/signup", action.payload);
     },
     login: (state, action) => {
-      axios
-        .post("/form/login", action.payload)
-        .then((res) => console.log(res.data));
+      // console.log(action.payload);
     },
   },
 });

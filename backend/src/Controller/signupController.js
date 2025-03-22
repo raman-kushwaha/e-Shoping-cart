@@ -24,9 +24,11 @@ async function handleSignupForm(req, res) {
 }
 
 async function handleLoginForm(req, res) {
-  return res.json({
-    token: req.token,
-  });
+  if (req.token) {
+    return res.status(200).json({ token: req.token });
+  } else {
+    return res.status(500).json("token not generated");
+  }
 }
 
 module.exports = { handleSignupForm, handleLoginForm };

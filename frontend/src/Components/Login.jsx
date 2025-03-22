@@ -2,8 +2,9 @@ import { useEffect, useRef } from "react";
 import styles from "./Login.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { login } from "../store/features/e-ShopingCartSlice";
 import Cookies from "js-cookie";
+import axios from "axios";
+import { login } from "../store/features/e-ShopingCartSlice";
 
 const Login = () => {
   const Email = useRef();
@@ -21,18 +22,20 @@ const Login = () => {
   const handleOnSubmitForm = (event) => {
     event.preventDefault();
 
-    const email = Email.current.value;
-    const password = Password.current.value;
+    const payload = {
+      email: Email.current.value,
+      password: Password.current.value,
+    };
 
-    dispatch(
-      login({
-        email,
-        password,
+    console.log(payload);
+
+    axios
+      .post("/form/login", payload)
+      .then((res) => {
+        navi("/");
+        window.location.reload();
       })
-    );
-
-    navi("/");
-    window.location.reload();
+      .catch((err) => alert("user not found"));
   };
   return (
     <div className="container fluid">
