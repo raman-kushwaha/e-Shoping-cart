@@ -5,10 +5,10 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   server: {
     proxy: {
-      "/form": "https://e-shoping-cart-1.onrender.com",
-      "/api/products": "https://e-shoping-cart-1.onrender.com",
-      "/api/products/:id": "https://e-shoping-cart-1.onrender.com",
-      "/postDataByAnotherAPI": "https://e-shoping-cart-1.onrender.com",
+      "/form": "https://e-shoping-cart.onrender.com",
+      "/api/products": "https://e-shoping-cart.onrender.com",
+      "/api/products/:id": "https://e-shoping-cart.onrender.com",
+      "/postDataByAnotherAPI": "https://e-shoping-cart.onrender.com",
     },
   },
   plugins: [react()],
