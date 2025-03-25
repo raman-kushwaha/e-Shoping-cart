@@ -1,4 +1,4 @@
-import styles from "./AddProduct.module.css";
+import styles from "./UpdateProduct.module.css";
 import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {

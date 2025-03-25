@@ -68,7 +68,7 @@ const Signup = () => {
                     id="email"
                     type="email"
                     className="form-control rounded"
-                    placeholder="Enter Your Name"
+                    placeholder="Enter Your Email"
                   />
                 </div>
                 <div className="col-12 mb-3">
