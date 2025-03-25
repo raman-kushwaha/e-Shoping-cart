@@ -1,8 +1,10 @@
 const express = require("express");
 require("dotenv").config();
-const app = express();
 const fs = require("fs");
 const cookieParser = require("cookie-parser");
+
+const app = express();
+const PORT = process.env.PORT || 4000;
 
 //connection middleware
 app.use(express.json());
@@ -23,6 +25,4 @@ const productRoute = require("./productRoute");
 app.use("/form", staticRoute);
 app.use("/api/products", productRoute);
 
-app.listen(process.env.PORT, () =>
-  console.log(`http://localhost:${process.env.PORT}`)
-);
+app.listen(PORT, () => console.log(`http://localhost:${process.env.PORT}`));
