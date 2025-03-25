@@ -22,7 +22,7 @@ const Products = () => {
   useEffect(() => {
     setFetch(true);
 
-    axios.get("/api/products").then((res) => {
+    axios.get("https://e-shoping-cart-backend.onrender.com/api/products").then((res) => {
       dispatch(products(res.data));
       setFetch(false);
     });
