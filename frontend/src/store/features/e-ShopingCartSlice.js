@@ -70,7 +70,7 @@ const cartSlice = createSlice({
       }
     },
     signup: (state, action) => {
-      axios.post("/form/signup", action.payload);
+      // axios.post("/form/signup", action.payload);
     },
     login: (state, action) => {
       // console.log(action.payload);

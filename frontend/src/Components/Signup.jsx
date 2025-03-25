@@ -1,9 +1,9 @@
 import styles from "./Signup.module.css";
 import { useEffect, useRef } from "react";
-import { signup } from "../store/features/e-ShopingCartSlice";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
+import axios from "axios";
 
 const Signup = () => {
   const userName = useRef();
@@ -24,14 +24,21 @@ const Signup = () => {
   const handleOnSubmitForm = (event) => {
     event.preventDefault();
 
-    dispatch(
-      signup({
-        username: userName.current.value,
-        email: Email.current.value,
-        password: Password.current.value,
-        confirmpassword: confirmPassword.current.value,
+    const username = userName.current.value;
+    const email = Email.current.value;
+    const password = Password.current.value;
+    const confirmpassword = confirmPassword.current.value;
+
+    axios
+      .post("/form/signup", {
+        username,
+        email,
+        password,
+        confirmpassword,
       })
-    );
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log(err));
+
     navigation("/login");
   };
   return (
