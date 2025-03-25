@@ -15,7 +15,7 @@ app.use(cookieParser());
 
 //database connectio
 const connect = require("./model/connection");
-connect("mongodb://127.0.0.1:27017/eShopingCart").then(
+connect(process.env.CONNECTION_TO_DATABASE).then(
   console.log(`Database run at :  mongodb://127.0.0.1:27017/`)
 );
 
